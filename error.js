@@ -21,20 +21,28 @@ const applyRandomError = (data) => {
     return errorFunction(data);
 }
 
-const initErrorFunction = (data, errorCount) => {
+const initErrorFunction = (dataArray, errorCount) => {
     const MAX_ERRORS = 1000;
-    const errorsToRun = errorCount > 1000 ? MAX_ERRORS : errorCount;
+    const errorsToRun = Math.min(errorCount, MAX_ERRORS);
 
     if (errorsToRun === 0) {
-        return data;
+        return dataArray;
     }
 
-    for (let i = 0; i < errorsToRun; i++) {
-        const randomProperty = Object.keys(data)[Math.floor(Math.random() * Object.keys(data).length)];
-        data[randomProperty] = applyRandomError(data[randomProperty]);
-    }
+    // Iterate over each object in the array
+    const result = dataArray.map((data) => {
+        const processedData = { ...data };
+        for (let i = 0; i < errorsToRun; i++) {
+            const randomKey = Object.keys(processedData)[Math.floor(Math.random() * Object.keys(processedData).length)];
+            processedData[randomKey] = applyRandomError(processedData[randomKey]);
+        }
 
-    return data;
-}
+        return processedData;
+    });
+
+    return result;
+};
+
+
 
 module.exports = initErrorFunction;

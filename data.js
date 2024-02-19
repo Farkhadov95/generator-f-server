@@ -41,14 +41,11 @@ const generateFakeData = (seed, region) => {
         name: fakeLocale.person.fullName(),
         email: fakeLocale.internet.email(),
         phone: fakeLocale.phone.number(),
-        number: fakeLocale.number.int(),
-        address: {
-            house: fakeLocale.location.buildingNumber(),
-            street: fakeLocale.location.street(),
-            city: fakeLocale.location.city(),
-            country: getCountry(region),
-            zipCode: fakeLocale.location.zipCode()
-        }
+        house: fakeLocale.location.buildingNumber(),
+        street: fakeLocale.location.street(),
+        city: fakeLocale.location.city(),
+        country: getCountry(region),
+        zipCode: fakeLocale.location.zipCode()
     }
 };
 
@@ -66,7 +63,8 @@ router.get('/', (req, res) => {
     const fakeData = resultsCompiler(seed, 'es');
     const result = initErrorFunction(fakeData, 10);
 
-    res.json(result);
+    res.json({ fakeData, result });
 });
+
 
 module.exports = router;
