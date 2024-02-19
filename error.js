@@ -5,7 +5,7 @@ const deleteCharacter = (str) => {
 
 const addRandomCharacter = (str) => {
     const index = Math.floor(Math.random() * str.length);
-    const randomChar = String.fromCharCode(Math.floor(Math.random() * 26) + 97); // Random lowercase letter
+    const randomChar = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
     return str.slice(0, index) + randomChar + str.slice(index);
 }
 
@@ -29,7 +29,6 @@ const initErrorFunction = (dataArray, errorCount) => {
         return dataArray;
     }
 
-    // Iterate over each object in the array
     const result = dataArray.map((data) => {
         const processedData = { ...data };
         for (let i = 0; i < errorsToRun; i++) {

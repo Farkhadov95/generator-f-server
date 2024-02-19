@@ -58,12 +58,12 @@ const resultsCompiler = (seed, region) => {
     return results;
 }
 
-router.get('/', (req, res) => {
-    const seed = parseInt(42) || 0;
-    const fakeData = resultsCompiler(seed, 'es');
-    const result = initErrorFunction(fakeData, 10);
+router.post('/', (req, res) => {
+    const seed = parseInt(req.body.seed) || 0;
+    const fakeData = resultsCompiler(seed, req.body.region);
+    const result = initErrorFunction(fakeData, req.body.errors);
 
-    res.json({ fakeData, result });
+    res.json(result);
 });
 
 
