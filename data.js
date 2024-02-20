@@ -38,6 +38,7 @@ const generateFakeData = (seed, region) => {
     fakeLocale.seed(seed);
 
     return {
+        id: seed,
         name: fakeLocale.person.fullName(),
         email: fakeLocale.internet.email(),
         phone: fakeLocale.phone.number(),

@@ -32,9 +32,14 @@ const initErrorFunction = (dataArray, errorCount) => {
     const result = dataArray.map((data) => {
         const processedData = { ...data };
         for (let i = 0; i < errorsToRun; i++) {
-            const randomKey = Object.keys(processedData)[Math.floor(Math.random() * Object.keys(processedData).length)];
+            let randomKey;
+            do {
+                randomKey = Object.keys(processedData)[Math.floor(Math.random() * Object.keys(processedData).length)];
+            } while (randomKey === "id");
+
             processedData[randomKey] = applyRandomError(processedData[randomKey]);
         }
+
 
         return processedData;
     });
