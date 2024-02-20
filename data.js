@@ -1,4 +1,4 @@
-const { fakerES, fakerEN, fakerTR, fakerPL } = require('@faker-js/faker');
+const { fakerES, fakerEN_US, fakerTR, fakerPL } = require('@faker-js/faker');
 const express = require('express');
 const router = express.Router();
 const initErrorFunction = require('./error');
@@ -8,13 +8,13 @@ const fakerLocaleType = (location) => {
         case 'es':
             return fakerES;
         case 'en':
-            return fakerEN;
+            return fakerEN_US;
         case 'tr':
             return fakerTR;
         case 'pl':
             return fakerPL;
         default:
-            return fakerEN;
+            return fakerEN_US;
     }
 }
 
