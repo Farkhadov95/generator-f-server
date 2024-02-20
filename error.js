@@ -23,14 +23,25 @@ const applyRandomError = (data) => {
 
 const initErrorFunction = (dataArray, errorCount) => {
     const MAX_ERRORS = 1000;
-    const errorsToRun = Math.min(errorCount, MAX_ERRORS);
+    let errorsToRun = Math.min(errorCount, MAX_ERRORS);
 
     if (errorsToRun === 0) {
         return dataArray;
     }
 
+
     const result = dataArray.map((data) => {
         const processedData = { ...data };
+
+        const integerPart = Math.floor(errorsToRun);
+        const decimalPart = errorsToRun - integerPart;
+
+        if (Math.random() < decimalPart) {
+            errorsToRun = integerPart + 1;
+        } else {
+            errorsToRun = integerPart;
+        }
+
         for (let i = 0; i < errorsToRun; i++) {
             let randomKey;
             do {
