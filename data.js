@@ -42,7 +42,7 @@ const generateFakeData = (seed, region) => {
     const fakeEmail = fakeLocale.internet.email();
 
     return {
-        id: seed + fakeName.length + fakeEmail.length,
+        id: `${seed}-${fakeName.substring(0, 5)}-${fakeEmail.substring(0, 5)}`,
         name: fakeName,
         email: fakeEmail,
         phone: fakeLocale.phone.number(),
