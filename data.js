@@ -1,4 +1,5 @@
 const { fakerES, fakerEN_US, fakerTR, fakerPL } = require('@faker-js/faker');
+const { createHash } = require('crypto');
 const express = require('express');
 const router = express.Router();
 const initErrorFunction = require('./error');
@@ -37,10 +38,13 @@ const generateFakeData = (seed, region) => {
     const fakeLocale = fakerLocaleType(region);
     fakeLocale.seed(seed);
 
+    const fakeName = fakeLocale.person.fullName();
+    const fakeEmail = fakeLocale.internet.email();
+
     return {
-        id: seed + 10,
-        name: fakeLocale.person.fullName(),
-        email: fakeLocale.internet.email(),
+        id: seed + fakeName.length + fakeEmail.length,
+        name: fakeName,
+        email: fakeEmail,
         phone: fakeLocale.phone.number(),
         house: fakeLocale.location.buildingNumber(),
         street: fakeLocale.location.street(),
