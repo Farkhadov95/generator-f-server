@@ -49,10 +49,10 @@ const generateFakeData = (seed, region) => {
     }
 };
 
-const resultsCompiler = (seed, region) => {
+const resultsCompiler = (seed, page, region) => {
     let results = [];
     for (let i = 0; i < 10; i++) {
-        const fakeData = generateFakeData(seed + i, region);
+        const fakeData = generateFakeData(seed + page + i, region);
         results.push(fakeData);
     }
     return results;
@@ -60,7 +60,8 @@ const resultsCompiler = (seed, region) => {
 
 router.post('/', (req, res) => {
     const seed = parseInt(req.body.seed) || 0;
-    const fakeData = resultsCompiler(seed, req.body.region);
+    const page = parseInt(req.body.page) || 1;
+    const fakeData = resultsCompiler(seed, page, req.body.region);
     const result = initErrorFunction(fakeData, req.body.errors);
 
     res.json(result);
