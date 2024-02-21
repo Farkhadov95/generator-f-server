@@ -1,13 +1,12 @@
-const { fakerES, fakerEN_US, fakerTR, fakerPL } = require('@faker-js/faker');
-const { createHash } = require('crypto');
+const { fakerDE, fakerEN_US, fakerTR, fakerPL } = require('@faker-js/faker');
 const express = require('express');
 const router = express.Router();
 const initErrorFunction = require('./error');
 
 const fakerLocaleType = (location) => {
     switch (location) {
-        case 'es':
-            return fakerES;
+        case 'de':
+            return fakerDE;
         case 'en':
             return fakerEN_US;
         case 'tr':
@@ -21,8 +20,8 @@ const fakerLocaleType = (location) => {
 
 const getCountry = (region) => {
     switch (region) {
-        case 'es':
-            return 'España';
+        case 'de':
+            return 'Deutschland';
         case 'en':
             return 'USA'
         case 'tr':
