@@ -41,8 +41,14 @@ const generateFakeData = (seed, region) => {
     const fakeName = fakeLocale.person.fullName();
     const fakeEmail = fakeLocale.internet.email();
 
+    const generateId = (seed, fakeName, fakeEmail) => {
+        const trimmedName = fakeName.substring(0, 5).toLowerCase().trim().replace(/\s+/g, '');
+        const trimmedEmail = fakeEmail.substring(0, 5).toLowerCase().trim().replace(/\s+/g, '');
+        return `${seed}${trimmedName}${trimmedEmail}`;
+    };
+
     return {
-        id: `${seed}${fakeName.substring(0, 5).toLowerCase().trim()}${fakeEmail.substring(0, 5).toLowerCase().trim()}`,
+        id: generateId(seed, fakeName, fakeEmail),
         name: fakeName,
         email: fakeEmail,
         phone: fakeLocale.phone.number(),
