@@ -56,7 +56,15 @@ const generateFakeData = (seed, region) => {
 
 const resultsCompiler = (seed, page, region) => {
     let results = [];
-    for (let i = 0; i < 10; i++) {
+    let itemsPerPage;
+
+    if (page === 1) {
+        itemsPerPage = 20;
+    } else {
+        itemsPerPage = 10;
+    }
+
+    for (let i = 0; i < itemsPerPage; i++) {
         const fakeData = generateFakeData(seed + page + i, region);
         results.push(fakeData);
     }
