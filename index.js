@@ -1,7 +1,7 @@
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
-const data = require('./data');
+const data = require('./src/data');
 const express = require('express');
 const app = express();
 
